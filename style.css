@@ -58,21 +58,36 @@ body {
 }
 
 .player {
-
+    font-size: 4vmin;
+    color: var(--primary-color-600);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(-45deg);
 }
 
 .projectile {
-    
-}
-
-.invader-one {
 
 }
 
-.invader-two {
+.invader {
+    background-color: var(--primary-color-600);
+    border: .05rem solid var(--primary-color-400);
+    border-radius: 1rem;
+}
+
+.invader  .grunt {
+
+}
+
+.invader .legionnaire {
     
 }
 
-.invader-three {
+.invader .hive {
     
+}
+
+.yes { 
+    transform: rotate(-44deg);
 }
