@@ -1,3 +1,10 @@
+/* global styles */
+
+:root {
+    --primary-color-400: hsl(252, 32%, 55%);
+    --primary-color-600: hsl(252, 32%, 15%);
+}
+
 *,
 *::before,
 *::after {
@@ -7,5 +14,65 @@
 }
 
 body {
+    font-family: 'Gugi', cursive;
+    background-color: var(--primary-color-400);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* typography */
+
+.header-wrapper {
+    color: var(--primary-color-600);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 80vmin;
+} 
+
+.title {
+    font-size: 6vmin;
+}
+
+.score {
+    font-size: 3vmin;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+/* game styles */
+
+#grid {
+    border: .3rem solid var(--primary-color-600);
+    border-radius: .25rem;
+    display: grid;
+    grid-template-rows: repeat(19, 1fr);
+    grid-template-columns: repeat(19, 1fr);
+    width: 80vmin;
+    height: 80vmin;
+
+}
+
+.player {
+
+}
+
+.projectile {
+    
+}
+
+.invader-one {
+
+}
+
+.invader-two {
+    
+}
+
+.invader-three {
     
 }
