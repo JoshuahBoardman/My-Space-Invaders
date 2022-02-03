@@ -67,7 +67,7 @@ body {
 }
 
 .projectile {
-
+    background-color: var(--primary-color-600);
 }
 
 .invader {

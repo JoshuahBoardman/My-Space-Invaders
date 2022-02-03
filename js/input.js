@@ -8,6 +8,9 @@ window.addEventListener("keydown", e => {
         case "ArrowLeft":
             inputDirection = {x: -1, y: 0};
             break;
+        case "ArrowUp":
+            inputDirection= {x: 0, y: -1};
+            break;
     }
 });
 
