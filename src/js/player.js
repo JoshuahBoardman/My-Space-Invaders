@@ -1,7 +1,7 @@
 import { getInputDirection } from "./input.js";
 import { isRightBorder, isLeftBorder } from "./grid.js";
 
-const player = {x: 10, y: 18};
+export const player = {x: 10, y: 18};
 
 export function playerDraw(grid, ) {
     const newPlayer = document.createElement("div");

@@ -1,7 +1,7 @@
 import { girdBorder, isRightBorder } from "./grid.js";
 
 // TODO move allInvaders to a json file
-const allInvaders = [
+export const allInvaders = [
     // y: 2
     {x: 5, y: 2}, {x: 6, y: 2}, {x: 7, y: 2}, {x: 8, y: 2}, {x: 9, y: 2}, {x: 10, y: 2}, {x: 11, y: 2}, {x: 12, y: 2}, {x: 13, y: 2}, {x: 14, y: 2}, {x: 15, y: 2},
     // y: 3
@@ -28,7 +28,6 @@ export function invaderDraw(grid) {
 };
 
 export function invaderUpdate() {
-    
     if(invaderAtBorder() && canAdvance) {
         allInvaders.forEach(invader => {
             invader.y += 1;
