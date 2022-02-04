@@ -13,6 +13,7 @@ export function playerDraw(grid, ) {
 };
 
 export function playerUpdate() {
+
     const inputDirection = getInputDirection();
     if((inputDirection.x === 1 && isRightBorder(player)) ||
     (inputDirection.x === -1 && isLeftBorder(player))) {

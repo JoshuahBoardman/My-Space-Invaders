@@ -1,6 +1,8 @@
 import { invaderDraw, invaderUpdate, allInvaders } from "./invader.js";
-import { playerDraw, playerUpdate, player } from "./player.js";
-import { sharePosition } from "./grid.js";
+import { playerDraw, playerUpdate, player} from "./player.js";
+import { girdBorder, sharePosition } from "./grid.js";
+import { projectileDraw, projectileUpdate } from "./projectile.js";
+
 
 const grid = document.getElementById("grid");
 
@@ -14,26 +16,29 @@ function gameLoop(timeStamp) {
     
     previousTime = timeStamp;
 
-    
+
     update();
     draw();
     gameOver(requestId);
+    win(requestId);
 };
 
 function draw() {
     grid.innerHTML = ""
     playerDraw(grid);
+    projectileDraw(grid);
     invaderDraw(grid);
 };
 
 function update() {
     playerUpdate();
+    projectileUpdate();
     invaderUpdate();
 };
 
 function isGameOver() {
     return allInvaders.some(invader => {
-        return sharePosition(player, invader) || invader.y > player.y;
+        return sharePosition(invader, player);
     });
 };
 
@@ -42,6 +47,21 @@ function gameOver(id) {
     window.cancelAnimationFrame(id);
     // TODO set a time delay before and add big game over text along witha replay button
     grid.innerHTML = "";
+    displayResultText("You Loose");
 };
+
+function win(id) {
+    if(allInvaders.length !== 0) return;
+    window.cancelAnimationFrame(id);
+    grid.innerHTML = "";
+    displayResultText("You Win!");
+}
+
+function displayResultText(string) {
+    const resultText = document.createElement("div");
+    resultText.classList.add("result-text");
+    resultText.innerText = `${string}`;
+    grid.appendChild(resultText);
+}
 
 window.requestAnimationFrame(gameLoop);

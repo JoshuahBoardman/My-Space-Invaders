@@ -47,6 +47,7 @@ body {
 /* game styles */
 
 #grid {
+    position: relative;
     border: .3rem solid var(--primary-color-600);
     border-radius: .25rem;
     display: grid;
@@ -55,6 +56,14 @@ body {
     width: 80vmin;
     height: 80vmin;
 
+}
+
+.result-text {
+    font-size: 5vmin;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .player {
@@ -66,24 +75,22 @@ body {
     transform: rotate(-45deg);
 }
 
+.projectile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .projectile {
     background-color: var(--primary-color-600);
+    border-radius: 1rem;
+    width: .5vmin;
+    height: 3vmin;
 }
 
 .invader {
-    background-color: var(--primary-color-600);
-    border: .05rem solid var(--primary-color-400);
-    border-radius: 1rem;
-}
-
-.invader  .grunt {
-
-}
-
-.invader .legionnaire {
-    
-}
-
-.invader .hive {
-    
+    font-size: 4vmin;
+    color: var(--primary-color-600);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
