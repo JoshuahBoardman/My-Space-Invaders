@@ -47,7 +47,7 @@ function gameOver(id) {
     window.cancelAnimationFrame(id);
     // TODO set a time delay before and add big game over text along witha replay button
     grid.innerHTML = "";
-    displayResultText("You Loose");
+    displayResultText("You Lose");
 };
 
 function win(id) {
