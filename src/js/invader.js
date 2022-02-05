@@ -1,11 +1,12 @@
-import { girdBorder} from "./grid.js";
+import { girdBorder } from "./grid.js";
 import { allProjectiles } from "./projectile.js";
 import { sharePosition } from "./grid.js";
+import { updateScore } from "./score.js";
 
 // TODO move allInvaders to a json file
-export const allInvaders = [
+export let allInvaders = [
     // y: 2
-    {x: 5, y: 2, type: "bitcoin"}, {x: 6, y: 2, type: "bitcoin"}, {x: 7, y: 2, type: "bitcoin"}, {x: 8, y: 2, type: "bitcoin"}, {x: 9, y: 2, type: "bitcoin"}, {x: 10, y: 2, type: "bitcoin"}, {x: 11, y: 2, type: "bitcoin"}, {x: 12, y: 2, type: "bitcoin"}, {x: 13, y: 2, type: "bitcoin"}, {x: 14, y: 2, type: "bitcoin"}, {x: 15, y: 2, type: "bitcoin"},
+     {x: 5, y: 2, type: "bitcoin"}, {x: 6, y: 2, type: "bitcoin"}, {x: 7, y: 2, type: "bitcoin"}, {x: 8, y: 2, type: "bitcoin"}, {x: 9, y: 2, type: "bitcoin"}, {x: 10, y: 2, type: "bitcoin"}, {x: 11, y: 2, type: "bitcoin"}, {x: 12, y: 2, type: "bitcoin"}, {x: 13, y: 2, type: "bitcoin"}, {x: 14, y: 2, type: "bitcoin"}, {x: 15, y: 2, type: "bitcoin"},
     // y: 3
     {x: 5, y: 3, type: "ethereum"}, {x: 6, y: 3, type: "ethereum"}, {x: 7, y: 3, type: "ethereum"}, {x: 8, y: 3, type: "ethereum"}, {x: 9, y: 3, type: "ethereum"}, {x: 10, y: 3, type: "ethereum"}, {x: 11, y: 3, type: "ethereum"}, {x: 12, y: 3, type: "ethereum"}, {x: 13, y: 3, type: "ethereum"}, {x: 14, y: 3, type: "ethereum"}, {x: 15, y: 3, type: "ethereum"},
     // y: 4
@@ -31,12 +32,12 @@ export function invaderDraw(grid) { "ethereum"
 };
 
 export function invaderUpdate() {
-    console.log(moveRight)
+    destroyInvader();
     if(invaderAtBorder() && canAdvance) {
         allInvaders.forEach(invader => {
             invader.y += 1;
-            moveRight = !moveRight
         })
+        moveRight = !moveRight
         canAdvance = false;
     } else if(moveRight) {
         allInvaders.forEach(invader => {
@@ -49,24 +50,7 @@ export function invaderUpdate() {
         })
         canAdvance = true;
     } 
-    destroyInvader();
 };
-
-function invaderAtBorder() {
-    return allInvaders.some(invader => {
-        return girdBorder(invader);
-    })
-}
-
-function destroyInvader() {
-    allInvaders.forEach(invader => {
-        allProjectiles.forEach( projectile=> {
-            if (sharePosition(invader, projectile)) {
-                allInvaders.splice(allInvaders.indexOf(invader, 1));
-            };
-        });
-    });
-}
 
 function invaderTypeCheck(invader, el) {
     if (invader.type === "bitcoin") {
@@ -76,4 +60,22 @@ function invaderTypeCheck(invader, el) {
     } else {
         el.innerHTML = `<i class="fab fa-viacoin"></i>`;
     }
+};
+
+function invaderAtBorder() {
+    return allInvaders.some(invader => {
+        return girdBorder(invader);
+    })
+};
+
+function destroyInvader() {
+    allInvaders.forEach(invader => {
+        allProjectiles.forEach( projectile=> {
+            if (sharePosition(invader, projectile)) {
+                updateScore(invader);
+                allInvaders.splice(allInvaders.indexOf(invader), 1);
+            };
+        });
+    });
 }
+
